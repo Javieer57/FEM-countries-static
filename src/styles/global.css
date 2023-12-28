@@ -1,0 +1,11 @@
+/* tailwind imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* custom css */
+@layer components {
+  .container {
+    @apply max-w-[80rem] w-[94%] mx-auto; /* 1280px */
+  }
+}

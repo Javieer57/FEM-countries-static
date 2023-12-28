@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets";
+import MoonIcon from "@assets/icons/moon.svg";
+---
+
+<header class="dark:bg-darkBlue-500 mb-6 lg:mb-12 bg-white">
+  <div class="py-7 lg:py-6 container flex justify-between items-center">
+    <h1 class="font-bold text-sm lg:text-2xl">
+      <a href="/"> Where in the world?</a>
+    </h1>
+
+    <button
+      class="text-xs font-semibold flex items-center gap-2 border-none bg-none"
+      id="themeToggle"
+    >
+      <Image src={MoonIcon} alt="moon" class="w-4 h-4" />
+       Dark Mode
+    </button>
+  </div>
+</header>
+
+<style>
+  header {
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.06);
+  }
+</style>
