@@ -1,4 +1,6 @@
 ---
+import BackBtn from "@components/BackBtn.astro";
+import Details from "@components/Details.astro";
 import Layout from "@layouts/Layout.astro";
 
 export async function getStaticPaths() {
@@ -25,6 +27,9 @@ const { countryData } = Astro.props;
 ---
 
 <Layout title={`${country} details`}>
-  <h1>Frontend Mentor REST Countries</h1>
-  <p>Frontend Mentor REST Countries</p>
+  <div class="mb-16 lg:mb-20">
+    <BackBtn />
+  </div>
+
+  <Details country={countryData} />
 </Layout>
