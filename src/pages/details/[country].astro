@@ -1,0 +1,30 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const data = await fetch("https://restcountries.com/v3.1/all").then(
+    (response) => response.json()
+  );
+
+  return data.map((country) => {
+    const countryName = country.name.common.replace(/\s/g, "-");
+
+    return {
+      params: {
+        country: countryName,
+      },
+      props: {
+        countryData: country,
+      },
+    };
+  });
+}
+
+const { country } = Astro.params;
+const { countryData } = Astro.props;
+---
+
+<Layout title={`${country} details`}>
+  <h1>Frontend Mentor REST Countries</h1>
+  <p>Frontend Mentor REST Countries</p>
+</Layout>

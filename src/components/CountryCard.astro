@@ -1,9 +1,7 @@
 ---
 const { country } = Astro.props;
 
-const route = `/details/${country.name.common
-  .replace(/\s/g, "-")
-  .toLowerCase()}`;
+const route = `/details/${country.name.common.replace(/\s/g, "-")}`;
 
 const countryInfo = {
   Population: new Intl.NumberFormat().format(country.population),
