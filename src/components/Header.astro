@@ -1,6 +1,5 @@
 ---
-import { Image } from "astro:assets";
-import MoonIcon from "@assets/icons/moon.svg";
+import ThemeSwitcher from "./ThemeSwitcher.astro";
 ---
 
 <header class="dark:bg-darkBlue-500 mb-6 lg:mb-12 bg-white">
@@ -9,13 +8,7 @@ import MoonIcon from "@assets/icons/moon.svg";
       <a href="/"> Where in the world?</a>
     </h1>
 
-    <button
-      class="text-xs font-semibold flex items-center gap-2 border-none bg-none"
-      id="themeToggle"
-    >
-      <Image src={MoonIcon} alt="moon" class="w-4 h-4" />
-       Dark Mode
-    </button>
+    <ThemeSwitcher />
   </div>
 </header>
 
