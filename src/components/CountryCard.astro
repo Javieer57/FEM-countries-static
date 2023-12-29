@@ -1,0 +1,39 @@
+---
+const { country } = Astro.props;
+
+const route = `/details/${country.name.common
+  .replace(/\s/g, "-")
+  .toLowerCase()}`;
+
+const countryInfo = {
+  Population: new Intl.NumberFormat().format(country.population),
+  Region: country.region,
+  Capital: country.capital,
+};
+---
+
+<a href={route}>
+  <figure
+    class="bg-white rounded-md overflow-hidden hover:scale-105 transition-transform dark:bg-darkBlue-500 max-w-[16.5rem] shadow"
+  >
+    <img
+      class="w-full aspect-[5/3]"
+      src={country.flags.png}
+      alt={country.name.common}
+    />
+
+    <figcaption class="p-6 pb-11">
+      <h2 class="text-lg font-extrabold mb-4">{country.name.common}</h2>
+
+      <div class="space-y-2">
+        {
+          Object.entries(countryInfo).map(([key, value]) => (
+            <p class="text-xs font-light">
+              <span class="font-semibold">{key}:</span> {value}
+            </p>
+          ))
+        }
+      </div>
+    </figcaption>
+  </figure>
+</a>
