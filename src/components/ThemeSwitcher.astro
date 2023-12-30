@@ -1,13 +1,12 @@
 ---
-import { Image } from "astro:assets";
-import MoonIcon from "@assets/icons/moon.svg";
+import MoonIcon from "@assets/icons/moon.svg?raw";
 ---
 
 <button
   class="text-xs font-semibold flex items-center gap-2 border-none bg-none"
   id="themeToggle"
 >
-  <Image src={MoonIcon} alt="moon" class="w-4 h-4" />
+  <Fragment set:html={MoonIcon} />
    Dark Mode
 </button>
 
