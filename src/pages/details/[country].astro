@@ -1,0 +1,43 @@
+---
+import BackBtn from "@components/BackBtn.astro";
+import Details from "@components/Details.astro";
+import Layout from "@layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const data = await fetch("https://restcountries.com/v3.1/all").then(
+    (response) => response.json()
+  );
+
+  const countriesCodes = data.map((country) => {
+    return {
+      code: country.cca3,
+      name: country.name.common,
+    };
+  });
+
+  return data.map((country) => {
+    const countryName = country.name.common.replace(/\s/g, "-");
+
+    return {
+      params: {
+        country: countryName,
+      },
+      props: {
+        countryData: country,
+        countriesCodes: countriesCodes,
+      },
+    };
+  });
+}
+
+const { country } = Astro.params;
+const { countryData, countriesCodes } = Astro.props;
+---
+
+<Layout title={`${country} details`}>
+  <main class="container pt-10 pb-16 lg:py-20 space-y-16 lg:space-y-20">
+    <BackBtn />
+
+    <Details country={countryData} countriesCodes={countriesCodes} />
+  </main>
+</Layout>

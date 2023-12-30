@@ -1,0 +1,28 @@
+---
+import CountryCard from "./CountryCard.astro";
+
+const response = await fetch("https://restcountries.com/v3.1/all");
+const countries = await response.json();
+
+countries.sort((a, b) => {
+  if (a.name.common < b.name.common) {
+    return -1;
+  }
+  if (a.name.common > b.name.common) {
+    return 1;
+  }
+  return 0;
+});
+---
+
+<ul
+  class="grid gap-[4.6875rem] justify-between justify-items-center grid-cols-[repeat(auto-fill,_minmax(12.5rem,_1fr))]"
+>
+  {
+    countries.map((country) => (
+      <li>
+        <CountryCard country={country} />
+      </li>
+    ))
+  }
+</ul>
