@@ -1,5 +1,6 @@
 ---
 import { CountriesGrid } from "@components/CountriesGrid.jsx";
+import { Search } from "@components/Search";
 import Layout from "@layouts/Layout.astro";
 
 const response = await fetch("https://restcountries.com/v3.1/all");
@@ -8,6 +9,10 @@ const countries = await response.json();
 
 <Layout title="Frontend Mentor REST Countries">
   <main class="container pt-6 pb-16 lg:py-12">
+    <div class="mb-8 lg:mb-12">
+      <Search client:load />
+    </div>
+
     <CountriesGrid countries={countries} client:load />
   </main>
 </Layout>

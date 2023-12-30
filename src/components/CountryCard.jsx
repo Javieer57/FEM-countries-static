@@ -21,7 +21,7 @@ export const CountryCard = ({ country }) => {
 
           <div className="space-y-2">
             {Object.entries(countryInfo).map(([key, value]) => (
-              <p className="text-xs font-light">
+              <p className="text-xs font-light" key={key}>
                 <span className="font-semibold">{key}:</span> {value}
               </p>
             ))}

@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
-import { CountryCard } from "./CountryCard.jsx";
+import { useEffect } from "react";
+import { useStore } from "@nanostores/react";
+import { CountryCard } from "@components/CountryCard.jsx";
+import { filteredCountries, searchQuery } from "@store/countriesStore.js";
 
 export const CountriesGrid = ({ countries }) => {
-  const [sortedCountries, SortedCountries] = useState([]);
+  const $filteredCountries = useStore(filteredCountries);
+  const $searchQuery = useStore(searchQuery);
 
   useEffect(() => {
     const tempCountries = [...countries];
@@ -17,13 +20,18 @@ export const CountriesGrid = ({ countries }) => {
       return 0;
     });
 
-    SortedCountries(tempCountries);
-  }, [countries]);
+    filteredCountries.set(
+      tempCountries.filter((country) =>
+        country.name.common.toLowerCase().includes($searchQuery.toLowerCase())
+      )
+    );
+  }, [$searchQuery]);
 
   return (
     <ul className="grid gap-[4.6875rem] justify-between justify-items-center grid-cols-[repeat(auto-fill,_minmax(12.5rem,_1fr))]">
-      {sortedCountries.map((country) => (
-        <li>
+      {/* {sortedCountries.map((country) => ( */}
+      {$filteredCountries.map((country) => (
+        <li key={country.name.common}>
           <CountryCard country={country} />
         </li>
       ))}

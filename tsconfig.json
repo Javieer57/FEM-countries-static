@@ -3,18 +3,11 @@
   "compilerOptions": {
     "baseUrl": "C:/Users/angel/Documents/projects/FEM-countries-static",
     "paths": {
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@layouts/*": [
-        "src/layouts/*"
-      ],
-      "@styles/*": [
-        "src/styles/*"
-      ],
-      "@assets/*": [
-        "src/assets/*"
-      ]
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@styles/*": ["src/styles/*"],
+      "@store/*": ["src/store/*"],
+      "@assets/*": ["src/assets/*"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"
