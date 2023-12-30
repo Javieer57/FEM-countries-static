@@ -3,13 +3,20 @@ import { selectedRegion } from "@store/countriesStore.js";
 import { Listbox, Transition } from "@headlessui/react";
 import { ArrowDown } from "@components/ArrowDown";
 
-const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
+const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 export const RegionDropdown = () => {
   const $selectedRegion = useStore(selectedRegion);
 
   const handleRegionChange = (e) => {
     selectedRegion.set(e);
+  };
+
+  const modifyRegion = (region) => {
+    if (region === "Americas") {
+      return "America";
+    }
+    return region;
   };
 
   return (
@@ -22,7 +29,9 @@ export const RegionDropdown = () => {
       {({ open }) => (
         <>
           <Listbox.Button className="flex justify-between items-center text-left rounded-md bg-white px-6 py-4 w-full shadow dark:bg-darkBlue-500 dark:text-white text-sm">
-            {$selectedRegion ? $selectedRegion : "Filter by Region"}
+            {$selectedRegion
+              ? modifyRegion($selectedRegion)
+              : "Filter by Region"}
             <ArrowDown
               className={`transition-all duration-500 ${open && "-rotate-180"}`}
             />
@@ -36,14 +45,14 @@ export const RegionDropdown = () => {
             leaveTo="opacity-0 -translate-y-1"
             className="absolute pt-1 w-full z-10"
           >
-            <Listbox.Options className="rounded-md bg-white gap-1 px-6 py-4 flex flex-col items-start shadow-dropdown dark:bg-darkBlue-500 dark:text-white">
+            <Listbox.Options className="rounded-md bg-white gap-2 px-6 py-4 flex flex-col items-start shadow dark:bg-darkBlue-500 dark:text-white text-sm">
               {regions.map((region) => (
                 <Listbox.Option
                   key={region}
                   value={region}
                   className="cursor-pointer inline-block"
                 >
-                  {region}
+                  {modifyRegion(region)}
                 </Listbox.Option>
               ))}
             </Listbox.Options>
