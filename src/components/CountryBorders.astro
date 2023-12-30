@@ -1,25 +1,50 @@
 ---
-const { country } = Astro.props;
+const { country, countriesCodes } = Astro.props;
+
+// countriesCodes is an array of objects with the following structure:
+// {
+//   code: "AFG",
+//   name: "Afghanistan"
+// }
+
+const bordersNames = [];
+
+// Check if the country has borders
+if (country.borders) {
+  // Iterate through each border code
+  country.borders.forEach((bordersCode) => {
+    // Find the name of the border country using the border code
+    const borderName = countriesCodes.find(
+      (country) => country.code === bordersCode
+    ).name;
+    bordersNames.push(borderName);
+  });
+}
 ---
 
-<div class="font-semibold flex gap-3 items-center flex-wrap">
-  <p class="w-full lg:w-auto">Border Countries:</p>
+<div class="flex gap-3 items-center flex-wrap font-light">
+  <p class="font-semibold w-full lg:w-auto">Border Countries:</p>
 
   {
-    country.borders
-      ? country.borders.map((border) => {
-          return (
-            <span class="inline-block min-w-24 py-2 px-8 rounded-sm font-light text-sm dark:bg-darkBlue-500">
-              {border}
-            </span>
-          );
-        })
-      : "No Border Countries"
+    bordersNames.length > 0 ? (
+      bordersNames.map((border) => {
+        return (
+          <a
+            href={`/details/${border.replace(/\s/g, "-")}`}
+            class="inline-block min-w-24 py-2 px-8 rounded-sm text-sm dark:bg-darkBlue-500 hover:scale-105 transition-transform"
+          >
+            {border}
+          </a>
+        );
+      })
+    ) : (
+      <span>No Border Countries</span>
+    )
   }
 </div>
 
 <style>
-  span {
+  a {
     box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.1);
   }
 </style>

@@ -8,6 +8,13 @@ export async function getStaticPaths() {
     (response) => response.json()
   );
 
+  const countriesCodes = data.map((country) => {
+    return {
+      code: country.cca3,
+      name: country.name.common,
+    };
+  });
+
   return data.map((country) => {
     const countryName = country.name.common.replace(/\s/g, "-");
 
@@ -17,19 +24,20 @@ export async function getStaticPaths() {
       },
       props: {
         countryData: country,
+        countriesCodes: countriesCodes,
       },
     };
   });
 }
 
 const { country } = Astro.params;
-const { countryData } = Astro.props;
+const { countryData, countriesCodes } = Astro.props;
 ---
 
 <Layout title={`${country} details`}>
   <main class="container pt-10 pb-16 lg:py-20 space-y-16 lg:space-y-20">
     <BackBtn />
 
-    <Details country={countryData} />
+    <Details country={countryData} countriesCodes={countriesCodes} />
   </main>
 </Layout>

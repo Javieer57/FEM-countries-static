@@ -2,7 +2,7 @@
 import CountryBorders from "./CountryBorders.astro";
 import CountryInfo from "./CountryInfo.astro";
 
-const { country } = Astro.props;
+const { country, countriesCodes } = Astro.props;
 ---
 
 <div class="grid lg:grid-cols-2 gap-y-11 lg:gap-36 lg:items-center">
@@ -22,7 +22,7 @@ const { country } = Astro.props;
     </div>
 
     <div class="col-span-2">
-      <CountryBorders country={country} />
+      <CountryBorders country={country} countriesCodes={countriesCodes} />
     </div>
   </div>
 </div>
