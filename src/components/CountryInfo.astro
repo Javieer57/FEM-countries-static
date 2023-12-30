@@ -1,20 +1,26 @@
 ---
 const { country } = Astro.props;
 
-const currencies = Object.values(country.currencies)
-  .map((currency) => currency.name)
-  .join(", ");
+const currencies = country.currencies
+  ? Object.values(country.currencies)
+      .map((currency) => currency.name)
+      .join(", ")
+  : "";
 
-const languages = Object.entries(country.languages)
-  .map(([code, name]) => name)
-  .join(", ");
+const languages = country.languages
+  ? Object.entries(country.languages)
+      .map(([code, name]) => name)
+      .join(", ")
+  : "";
 
 const countryDetails = {
-  ["Native Name"]: Object.values(country.name.nativeName)[0].official,
+  ["Native Name"]: country.name.nativeName
+    ? Object.values(country.name.nativeName)[0].official
+    : "",
   Population: country.population.toLocaleString(),
   Region: country.region,
-  Subregion: country.subregion,
-  Capital: country.capital,
+  Subregion: country.subregion ? country.subregion : "",
+  Capital: country.capital ? country.capital : "",
 };
 
 const countryDetails2 = {
