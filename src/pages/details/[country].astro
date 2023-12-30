@@ -38,10 +38,6 @@ const { countryData, countriesCodes } = Astro.props;
   <main class="container pt-10 pb-16 lg:py-20 space-y-16 lg:space-y-20">
     <BackBtn />
 
-    <Details
-      transition:animate="slide"
-      country={countryData}
-      countriesCodes={countriesCodes}
-    />
+    <Details country={countryData} countriesCodes={countriesCodes} />
   </main>
 </Layout>
