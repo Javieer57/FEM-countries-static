@@ -1,0 +1,19 @@
+---
+import ThemeSwitcher from "./ThemeSwitcher.astro";
+---
+
+<header class="dark:bg-darkBlue-500 bg-white">
+  <div class="py-7 lg:py-6 container flex justify-between items-center">
+    <h1 class="font-bold text-sm lg:text-2xl">
+      <a href="/"> Where in the world?</a>
+    </h1>
+
+    <ThemeSwitcher />
+  </div>
+</header>
+
+<style>
+  header {
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.06);
+  }
+</style>
