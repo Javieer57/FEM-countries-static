@@ -1,18 +1,30 @@
 ---
 import { CountriesGrid } from "@components/CountriesGrid.jsx";
+import { RegionDropdown } from "@components/RegionDropdown";
 import { Search } from "@components/Search";
 import Layout from "@layouts/Layout.astro";
 
 const response = await fetch("https://restcountries.com/v3.1/all");
 const countries = await response.json();
+
+const sortedCountries = countries.sort((a, b) => {
+  if (a.name.common < b.name.common) {
+    return -1;
+  }
+  if (a.name.common > b.name.common) {
+    return 1;
+  }
+  return 0;
+});
 ---
 
 <Layout title="Frontend Mentor REST Countries">
   <main class="container pt-6 pb-16 lg:py-12">
-    <div class="mb-8 lg:mb-12">
+    <div class="flex mb-8 lg:mb-12 items-center lg:justify-between">
       <Search client:load />
+      <RegionDropdown client:load />
     </div>
 
-    <CountriesGrid countries={countries} client:load />
+    <CountriesGrid countries={sortedCountries} client:load />
   </main>
 </Layout>
