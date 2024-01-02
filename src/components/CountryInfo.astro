@@ -33,9 +33,11 @@ const countryDetails2 = {
 <div class="col-span-2 lg:col-span-1 space-y-4">
   {
     Object.entries(countryDetails).map(([key, value]) => (
-      <p class="font-light">
-        <span class="font-semibold">{key}:</span>
-        {value}
+      <p class="font-semibold">
+        {key}:
+        <span class="font-light" transition:animate="slide">
+          {value}
+        </span>
       </p>
     ))
   }
@@ -44,9 +46,11 @@ const countryDetails2 = {
 <div class="col-span-2 lg:col-span-1 space-y-4">
   {
     Object.entries(countryDetails2).map(([key, value]) => (
-      <p class="font-light">
-        <span class="font-semibold">{key}:</span>
-        {value}
+      <p class="font-semibold">
+        {key}:
+        <span class="font-light" transition:animate="slide">
+          {value}
+        </span>
       </p>
     ))
   }
