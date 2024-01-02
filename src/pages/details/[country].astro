@@ -34,7 +34,7 @@ const { country } = Astro.params;
 const { countryData, countriesCodes } = Astro.props;
 ---
 
-<Layout title={`${country} details`}>
+<Layout title={`${country} details`} desc={`${country} details`}>
   <main class="container pt-10 pb-16 lg:py-20 space-y-16 lg:space-y-20">
     <BackBtn />
 
