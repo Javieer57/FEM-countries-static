@@ -1,24 +1,23 @@
 ---
-import { fade } from "astro:transitions";
 import CountryBorders from "./CountryBorders.astro";
 import CountryInfo from "./CountryInfo.astro";
 
 const { country, countriesCodes } = Astro.props;
 ---
 
-<div
-  class="grid lg:grid-cols-2 gap-y-11 lg:gap-36 lg:items-center"
-  transition:animate="slide"
-  transition:animate={fade({ duration: "2s" })}
->
+<div class="grid lg:grid-cols-2 gap-y-11 lg:gap-36 lg:items-center">
   <img
     class="justify-self-center w-full max-w-[35rem] max-h-96 lg:max-w-max rounded-lg"
     src={country.flags.svg}
     alt={country.name.common}
+    transition:animate="slide"
   />
 
   <div>
-    <h1 class="mb-4 lg:mb-6 text-2xl lg:text-3xl font-extrabold">
+    <h1
+      class="mb-4 lg:mb-6 text-2xl lg:text-3xl font-extrabold"
+      transition:animate="slide"
+    >
       {country.name.common}
     </h1>
 
