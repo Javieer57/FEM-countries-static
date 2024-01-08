@@ -10,8 +10,16 @@ export const Search = () => {
       searchQuery.set(query);
     }, 300);
 
-    return () => clearTimeout(timeout);
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [query]);
+
+  useEffect(() => {
+    return () => {
+      searchQuery.set("");
+    };
+  }, []);
 
   return (
     <div className="bg-white rounded shadow relative w-full max-w-[30rem] overflow-hidden dark:bg-darkBlue-500 dark:text-white text-[#848484]">
