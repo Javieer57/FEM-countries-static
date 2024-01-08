@@ -26,7 +26,7 @@ export const Search = () => {
       <input
         type="text"
         placeholder="Search for a country…"
-        className="p-5 py-4 pl-[4.5rem] w-full peer text-sm focus:pl-5 transition-all duration-500 bg-transparent placeholder:text-inherit"
+        className="p-5 py-4 pl-[4.5rem] w-full peer text-sm focus:pl-5 bg-transparent placeholder:text-inherit"
         value={query}
         onInput={(e) => setQuery(e.target.value)}
         autoComplete="off"
@@ -34,7 +34,7 @@ export const Search = () => {
 
       <SearchIcon
         size={"1rem"}
-        className="absolute left-8 top-1/2 transform -translate-y-1/2 peer-focus:opacity-0 peer-focus:left-4 transition-all duration-500"
+        className="absolute left-8 top-1/2 transform -translate-y-1/2 peer-focus:opacity-0 peer-focus:left-4"
       />
     </div>
   );

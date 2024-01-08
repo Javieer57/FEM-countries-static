@@ -9,7 +9,7 @@ export const CountryCard = ({ country }) => {
 
   return (
     <a href={route}>
-      <figure className="bg-white rounded-md overflow-hidden hover:scale-105 transition-transform dark:bg-darkBlue-500 max-w-[16.5rem] shadow">
+      <figure className="bg-white rounded-md overflow-hidden hover:scale-105  dark:bg-darkBlue-500 max-w-[16.5rem] shadow">
         <img
           loading="lazy"
           className="w-full aspect-[5/3]"
