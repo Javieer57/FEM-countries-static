@@ -4,9 +4,6 @@
 @tailwind utilities;
 
 /* custom css */
-* {
-  @apply transition-all;
-}
 
 @layer components {
   .container {
