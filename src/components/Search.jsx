@@ -1,13 +1,17 @@
-import { useStore } from "@nanostores/react";
 import { searchQuery } from "@store/countriesStore.js";
 import { SearchIcon } from "@components/SearchIcon";
+import { useEffect, useState } from "react";
 
 export const Search = () => {
-  const $searchQuery = useStore(searchQuery);
+  const [query, setQuery] = useState("");
 
-  const handleSearch = (e) => {
-    searchQuery.set(e.target.value);
-  };
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      searchQuery.set(query);
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [query]);
 
   return (
     <div className="bg-white rounded shadow relative w-full max-w-[30rem] overflow-hidden dark:bg-darkBlue-500 dark:text-white text-[#848484]">
@@ -15,8 +19,9 @@ export const Search = () => {
         type="text"
         placeholder="Search for a country…"
         className="p-5 py-4 pl-[4.5rem] w-full peer text-sm focus:pl-5 transition-all duration-500 bg-transparent placeholder:text-inherit"
-        value={$searchQuery}
-        onInput={handleSearch}
+        value={query}
+        onInput={(e) => setQuery(e.target.value)}
+        autoComplete="off"
       />
 
       <SearchIcon
