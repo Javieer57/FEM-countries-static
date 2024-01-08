@@ -2,6 +2,7 @@ import { useStore } from "@nanostores/react";
 import { selectedRegion } from "@store/countriesStore.js";
 import { Listbox, Transition } from "@headlessui/react";
 import { ArrowDown } from "@components/ArrowDown";
+import { useEffect } from "react";
 
 const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
@@ -18,6 +19,12 @@ export const RegionDropdown = () => {
     }
     return region;
   };
+
+  useEffect(() => {
+    return () => {
+      selectedRegion.set("");
+    };
+  }, []);
 
   return (
     <Listbox
